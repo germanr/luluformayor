@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lulu for Mayor &mdash; Middlebury 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Special+Elite&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #f5ead0;
+  --cream-deep: #ede0bf;
+  --navy: #1e2a47;
+  --navy-deep: #131c33;
+  --burgundy: #a8362f;
+  --burgundy-deep: #872820;
+  --gold: #c9a35a;
+  --ink: #1f1a14;
+  --paper: #faf3df;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 18px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(168,54,47,0.04) 0, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(30,42,71,0.05) 0, transparent 50%);
+}
+
+/* paper texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.05 0 0 0 0.08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: 0.6;
+  z-index: 1;
+  mix-blend-mode: multiply;
+}
+
+main { position: relative; z-index: 2; }
+
+/* === BUNTING TOP === */
+.bunting {
+  display: flex;
+  width: 100%;
+  height: 36px;
+  margin: 0;
+}
+.bunting span {
+  flex: 1;
+  position: relative;
+  background: var(--navy);
+}
+.bunting span:nth-child(3n+2) { background: var(--burgundy); }
+.bunting span:nth-child(3n+3) { background: var(--cream-deep); }
+.bunting span::after {
+  content: '';
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+  right: 0;
+  height: 16px;
+  background: inherit;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+/* === MARQUEE BANNER === */
+.marquee {
+  background: var(--navy);
+  color: var(--cream);
+  padding: 8px 0;
+  font-family: 'Special Elite', monospace;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  overflow: hidden;
+  white-space: nowrap;
+  border-top: 4px solid var(--gold);
+  border-bottom: 4px solid var(--gold);
+  margin-top: 24px;
+}
+.marquee-track {
+  display: inline-block;
+  animation: scroll 40s linear infinite;
+  padding-left: 100%;
+}
+.marquee-track span { margin: 0 30px; }
+.marquee-track span::before { content: '\2605 '; color: var(--gold); }
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* === HERO === */
+.hero {
+  padding: 80px 5vw 60px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.hero-text { position: relative; }
+
+.eyebrow {
+  font-family: 'Special Elite', monospace;
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--burgundy);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.eyebrow::before, .eyebrow::after {
+  content: '';
+  height: 1px;
+  background: var(--burgundy);
+  flex: 0 0 30px;
+}
+
+.hero h1 {
+  font-family: 'Alfa Slab One', serif;
+  font-size: clamp(64px, 9vw, 140px);
+  line-height: 0.88;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  text-shadow: 4px 4px 0 var(--burgundy);
+}
+
+.hero h1 .for {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.5em;
+  color: var(--burgundy);
+  text-shadow: none;
+  display: inline-block;
+  transform: translateY(-0.4em) rotate(-4deg);
+  margin: 0 0.1em;
+}
+
+.slogan {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(28px, 3.5vw, 44px);
+  color: var(--burgundy);
+  margin: 32px 0 12px;
+  display: inline-block;
+  border-top: 3px double var(--burgundy);
+  border-bottom: 3px double var(--burgundy);
+  padding: 8px 24px 8px 0;
+}
+
+.subtitle {
+  font-size: 19px;
+  max-width: 480px;
+  margin-top: 24px;
+  color: var(--ink);
+}
+
+.cta-row {
+  margin-top: 40px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 18px 32px;
+  font-family: 'Alfa Slab One', serif;
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 3px solid var(--navy);
+  background: var(--cream);
+  color: var(--navy);
+  transition: all 0.2s ease;
+  position: relative;
+  box-shadow: 6px 6px 0 var(--navy);
+  cursor: pointer;
+}
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 var(--navy);
+}
+.btn.primary {
+  background: var(--burgundy);
+  color: var(--cream);
+  border-color: var(--navy);
+}
+
+.hero-image-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.hero-image {
+  width: 100%;
+  max-width: 480px;
+  border: 12px solid var(--cream);
+  outline: 3px solid var(--navy);
+  box-shadow: 12px 12px 0 var(--burgundy), 12px 12px 0 3px var(--navy);
+  transform: rotate(-2deg);
+  transition: transform 0.4s ease;
+}
+.hero-image:hover { transform: rotate(0deg) scale(1.02); }
+
+.stamp {
+  position: absolute;
+  top: -20px;
+  right: -10px;
+  width: 140px;
+  height: 140px;
+  border: 4px double var(--burgundy);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Alfa Slab One', serif;
+  color: var(--burgundy);
+  background: rgba(245, 234, 208, 0.95);
+  transform: rotate(12deg);
+  text-align: center;
+  line-height: 1;
+  padding: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.stamp .small { font-family: 'Special Elite', monospace; font-size: 11px; letter-spacing: 0.1em; margin-bottom: 4px; }
+.stamp .big { font-size: 28px; letter-spacing: 0.02em; }
+.stamp .tiny { font-family: 'Special Elite', monospace; font-size: 9px; letter-spacing: 0.15em; margin-top: 4px; }
+
+/* === SECTION COMMON === */
+section {
+  padding: 80px 5vw;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.section-eyebrow {
+  font-family: 'Special Elite', monospace;
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--burgundy);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.section-title {
+  font-family: 'Alfa Slab One', serif;
+  font-size: clamp(40px, 5vw, 72px);
+  color: var(--navy);
+  line-height: 1;
+  margin-bottom: 40px;
+  letter-spacing: -0.01em;
+}
+.section-title em {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--burgundy);
+}
+
+/* === QUALIFICATIONS === */
+.quals {
+  background: var(--navy);
+  color: var(--cream);
+  padding: 100px 5vw;
+  position: relative;
+  max-width: none;
+  margin: 60px 0;
+}
+.quals::before, .quals::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: repeating-linear-gradient(90deg, var(--burgundy) 0 40px, var(--cream) 40px 80px, var(--gold) 80px 120px, var(--cream) 120px 160px);
+}
+.quals::before { top: 0; }
+.quals::after { bottom: 0; }
+
+.quals-inner { max-width: 1400px; margin: 0 auto; }
+
+.quals .section-eyebrow { color: var(--gold); }
+.quals .section-title { color: var(--cream); }
+.quals .section-title em { color: var(--gold); }
+
+.quals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 50px;
+}
+
+.qual-card {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 32px 28px;
+  border: 2px solid var(--gold);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+.qual-card:hover { transform: translateY(-4px); }
+.qual-card::before {
+  content: attr(data-num);
+  position: absolute;
+  top: -18px;
+  left: 24px;
+  background: var(--burgundy);
+  color: var(--cream);
+  font-family: 'Alfa Slab One', serif;
+  font-size: 14px;
+  padding: 6px 14px;
+  letter-spacing: 0.1em;
+}
+.qual-card h3 {
+  font-family: 'Alfa Slab One', serif;
+  font-size: 22px;
+  color: var(--navy);
+  margin-bottom: 10px;
+  line-height: 1.15;
+}
+.qual-card p {
+  font-size: 16px;
+  color: var(--ink);
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+}
+
+/* === GALLERY === */
+.gallery {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 28px;
+  margin-top: 50px;
+}
+
+.photo {
+  position: relative;
+  background: var(--paper);
+  padding: 18px 18px 56px;
+  box-shadow: 0 8px 24px rgba(31,26,20,0.18);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.photo:hover {
+  transform: translateY(-6px) rotate(0deg) !important;
+  box-shadow: 0 16px 36px rgba(31,26,20,0.25);
+}
+.photo img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+}
+.photo .caption {
+  position: absolute;
+  bottom: 14px;
+  left: 18px;
+  right: 18px;
+  font-family: 'Special Elite', monospace;
+  font-size: 13px;
+  text-align: center;
+  color: var(--ink);
+  letter-spacing: 0.05em;
+}
+
+.photo.stylish { grid-column: span 4; transform: rotate(-2deg); }
+.photo.cuddle  { grid-column: span 5; transform: rotate(1.5deg); margin-top: 40px; }
+.photo.german  { grid-column: span 3; transform: rotate(-1deg); margin-top: 20px; }
+.photo.summit1 { grid-column: span 4; transform: rotate(2deg); }
+.photo.summit2 { grid-column: span 4; transform: rotate(-1deg); }
+.photo.newspaper { grid-column: span 4; transform: rotate(1deg); }
+
+.photo.placeholder {
+  background: var(--paper);
+  border: 2px dashed var(--burgundy);
+}
+.photo.placeholder .placeholder-inner {
+  width: 100%;
+  aspect-ratio: 4/5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--burgundy);
+  text-align: center;
+  padding: 20px;
+  background:
+    repeating-linear-gradient(45deg, transparent 0 8px, rgba(168,54,47,0.04) 8px 16px);
+}
+.photo.placeholder .icon {
+  font-family: 'Alfa Slab One', serif;
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+.photo.placeholder .label {
+  font-family: 'Alfa Slab One', serif;
+  font-size: 18px;
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+.photo.placeholder .sub {
+  font-family: 'Special Elite', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+/* === VOTE SECTION === */
+.vote-section {
+  background: var(--burgundy);
+  color: var(--cream);
+  padding: 100px 5vw;
+  max-width: none;
+  margin: 0;
+  text-align: center;
+  position: relative;
+}
+.vote-section::before, .vote-section::after {
+  content: '\2605 \2605 \2605';
+  font-size: 24px;
+  color: var(--gold);
+  letter-spacing: 0.5em;
+  display: block;
+}
+.vote-section::before { margin-bottom: 30px; }
+.vote-section::after { margin-top: 30px; }
+
+.vote-inner { max-width: 900px; margin: 0 auto; }
+
+.vote-section .section-eyebrow { color: var(--gold); }
+.vote-section h2 {
+  font-family: 'Alfa Slab One', serif;
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 0.95;
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+  color: var(--cream);
+}
+.vote-section h2 em {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold);
+}
+
+.vote-section p { font-size: 20px; max-width: 600px; margin: 0 auto 40px; }
+
+.qr-card {
+  background: var(--cream);
+  color: var(--ink);
+  padding: 36px 32px;
+  display: inline-block;
+  border: 4px solid var(--navy);
+  box-shadow: 10px 10px 0 var(--navy);
+  margin-top: 20px;
+  text-align: center;
+}
+.qr-card .qr-img {
+  width: 220px;
+  height: 220px;
+  background: var(--paper);
+  display: block;
+  margin: 0 auto;
+}
+.qr-card .qr-label {
+  font-family: 'Alfa Slab One', serif;
+  font-size: 18px;
+  margin-top: 16px;
+  color: var(--navy);
+  letter-spacing: 0.05em;
+}
+.qr-card .qr-sub {
+  font-family: 'Special Elite', monospace;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--burgundy);
+  margin-top: 6px;
+}
+
+.cause-note {
+  background: rgba(0,0,0,0.15);
+  border: 2px solid var(--gold);
+  padding: 24px 32px;
+  margin: 40px auto 0;
+  max-width: 640px;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--cream);
+}
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 50px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.timeline-item {
+  border: 2px solid var(--gold);
+  padding: 20px;
+  text-align: center;
+}
+.timeline-date {
+  font-family: 'Alfa Slab One', serif;
+  font-size: 24px;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.timeline-label {
+  font-family: 'Special Elite', monospace;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* === ABOUT THE CANDIDATE === */
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.about-text p {
+  font-size: 19px;
+  margin-bottom: 20px;
+}
+.about-text p:first-of-type::first-letter {
+  font-family: 'Alfa Slab One', serif;
+  font-size: 80px;
+  float: left;
+  line-height: 0.85;
+  margin: 6px 12px 0 0;
+  color: var(--burgundy);
+}
+.about-image img {
+  width: 100%;
+  border: 10px solid var(--cream);
+  outline: 2px solid var(--navy);
+  box-shadow: 14px 14px 0 var(--burgundy);
+}
+
+/* === FOOTER === */
+footer {
+  background: var(--navy-deep);
+  color: var(--cream);
+  padding: 60px 5vw 40px;
+  text-align: center;
+  font-family: 'Special Elite', monospace;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  border-top: 8px solid var(--gold);
+}
+footer .footer-title {
+  font-family: 'Alfa Slab One', serif;
+  font-size: 28px;
+  color: var(--gold);
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+footer .footer-tag {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--cream);
+  margin-bottom: 24px;
+  letter-spacing: 0;
+}
+footer .disclaimer {
+  max-width: 700px;
+  margin: 24px auto 0;
+  font-size: 11px;
+  opacity: 0.7;
+  line-height: 1.8;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding: 60px 5vw 40px; }
+  .about { grid-template-columns: 1fr; }
+  .gallery-grid > .photo { grid-column: span 12 !important; margin-top: 0 !important; transform: rotate(0) !important; }
+  .timeline { grid-template-columns: 1fr; }
+  .stamp { width: 100px; height: 100px; top: -10px; right: 10px; }
+  .stamp .big { font-size: 20px; }
+}
+
+/* === ANIMATIONS === */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s ease forwards;
+}
+.fade-up.d1 { animation-delay: 0.1s; }
+.fade-up.d2 { animation-delay: 0.2s; }
+.fade-up.d3 { animation-delay: 0.3s; }
+.fade-up.d4 { animation-delay: 0.4s; }
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+</style>
+</head>
+<body>
+
+<div class="bunting" aria-hidden="true">
+  <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+</div>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Vote Lulu</span><span>Licks for All</span><span>Middlebury Dog Mayor 2026</span><span>All Proceeds to Homeward Bound</span><span>Vote Lulu</span><span>Licks for All</span><span>Middlebury Dog Mayor 2026</span><span>All Proceeds to Homeward Bound</span>
+  </div>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="eyebrow fade-up">Middlebury Dog Mayor &middot; 2026</div>
+      <h1 class="fade-up d1">LULU <span class="for">for</span> MAYOR</h1>
+      <div class="fade-up d2">
+        <div class="slogan">&mdash; Licks for All &mdash;</div>
+      </div>
+      <p class="subtitle fade-up d3">A small dog with a big vision for Middlebury. Endorsed by every human who has ever met her. Available for belly rubs 24/7.</p>
+      <div class="cta-row fade-up d4">
+        <a href="#vote" class="btn primary">Cast Your Vote</a>
+        <a href="#qualifications" class="btn">Meet the Candidate</a>
+      </div>
+    </div>
+    <div class="hero-image-wrap fade-up d2">
+      <img src="./images/lulu-hope.jpg" alt="Lulu campaign portrait" class="hero-image">
+      <div class="stamp">
+        <span class="small">Official</span>
+        <span class="big">VOTE</span>
+        <span class="big">LULU</span>
+        <span class="tiny">2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section>
+    <div class="about">
+      <div class="about-text">
+        <span class="section-eyebrow">Meet the Candidate</span>
+        <h2 class="section-title">An outstanding <em>example.</em></h2>
+        <p>Lulu's story is the American story. Born in Tennessee, adopted in Connecticut, she found her forever home in Middlebury, where she has spent the last several years spreading joy down College Street, summiting peaks she has no business summiting, and licking the faces of new friends with relentless enthusiasm.</p>
+        <p>That last part is not incidental. As recently noted in the Addison Independent's Pet of the Week feature, Lulu is an enthusiastic face-licker. Consider yourself warned. The campaign was built around that fact. "Licks for All" is not just a slogan, it is a governing philosophy.</p>
+        <p>Her name, fittingly, means "an outstanding example of a particular type of person or thing." We thought we would just leave that there.</p>
+        <p>The platform is simple. More walks. Fewer baths. A chicken in every bowl. And a Middlebury where every tail wags, regardless of species, breed, or party affiliation.</p>
+      </div>
+      <div class="about-image">
+        <img src="./images/lulu-german.jpg" alt="Lulu with her human companion on the trail">
+      </div>
+    </div>
+  </section>
+
+  <!-- QUALIFICATIONS -->
+  <section class="quals" id="qualifications">
+    <div class="quals-inner">
+      <span class="section-eyebrow">Why Lulu</span>
+      <h2 class="section-title">Qualifications, <em>credentials,</em> and conviction.</h2>
+      <div class="quals-grid">
+        <div class="qual-card" data-num="01">
+          <h3>Summited Mount Mansfield</h3>
+          <p>Conquered Vermont's tallest peak despite standing less than one foot tall. Proof that size doesn't matter when grit does.</p>
+        </div>
+        <div class="qual-card" data-num="02">
+          <h3>Excellent Sniffer</h3>
+          <p>An olfactory talent unmatched in Addison County. If something is hidden, Lulu will find it.</p>
+        </div>
+        <div class="qual-card" data-num="03">
+          <h3>Chicken Connoisseur</h3>
+          <p>Boneless, skinless, plain boiled. A discerning palate is the mark of a discerning leader.</p>
+        </div>
+        <div class="qual-card" data-num="04">
+          <h3>Master of Diplomacy</h3>
+          <p>Maintains excellent relations with humans and dogs alike. Has never started a fight she could nap through instead.</p>
+        </div>
+        <div class="qual-card" data-num="05">
+          <h3>Squirrel Reconnaissance</h3>
+          <p>Extensive field experience tracking the town's most elusive constituents. Always vigilant.</p>
+        </div>
+        <div class="qual-card" data-num="06">
+          <h3>Public Servant</h3>
+          <p>Available for belly rubs 24/7. Office hours determined by the location of the nearest sunbeam.</p>
+        </div>
+        <div class="qual-card" data-num="07">
+          <h3>Masterful Napper</h3>
+          <p>Can nap anytime, anywhere, on any surface. A skill every public servant should have.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery">
+    <span class="section-eyebrow">On the Campaign Trail</span>
+    <h2 class="section-title">A candidate <em>of</em> the people.</h2>
+    <div class="gallery-grid">
+
+      <div class="photo summit1">
+        <img src="./images/lulu-summit.jpg" alt="Lulu at the summit of Mount Mansfield">
+        <div class="caption">&mdash; Mount Mansfield. 4,395 ft. &mdash;</div>
+      </div>
+
+      <div class="photo cuddle">
+        <img src="./images/lulu-cuddle.jpg" alt="Lulu cuddling with a friend">
+        <div class="caption">&mdash; Bipartisan tail-wagging in action. &mdash;</div>
+      </div>
+
+      <div class="photo german">
+        <img src="./images/lulu-german.jpg" alt="Lulu on the trail with her human">
+        <div class="caption">&mdash; With her human companion. &mdash;</div>
+      </div>
+
+      <div class="photo stylish">
+        <img src="./images/lulu-stylish.jpg" alt="Lulu in her red campaign jacket">
+        <div class="caption">&mdash; The Red Jacket. An icon. &mdash;</div>
+      </div>
+
+      <div class="photo summit2">
+        <img src="./images/lulu-cow.jpg" alt="Lulu in a cow costume on Halloween">
+        <div class="caption">&mdash; Cross-species appeal. Halloween, 2025. &mdash;</div>
+      </div>
+
+      <div class="photo newspaper">
+        <img src="./images/lulu-newspaper.jpg" alt="Lulu reading her Pet of the Week feature in the Addison Independent">
+        <div class="caption">&mdash; Pet of the Week, Addison Independent. &mdash;</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- VOTE -->
+  <section class="vote-section" id="vote">
+    <div class="vote-inner">
+      <span class="section-eyebrow">How to Vote</span>
+      <h2>Cast your <em>vote.</em><br>Change a <em>life.</em></h2>
+      <p>Each vote is a $5 donation to Homeward Bound, Addison County's Humane Society. Vote as many times as you'd like. Your generosity feeds, shelters, and finds homes for animals across the county.</p>
+
+      <div class="qr-card">
+        <img class="qr-img" alt="QR code to vote for Lulu"
+             src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fwww.homewardboundanimals.org%2Fget-involved%2Ffundraising-events%2F&bgcolor=faf3df&color=1e2a47&margin=0">
+        <div class="qr-label">Scan to Vote</div>
+        <div class="qr-sub">$5 = 1 Vote &middot; June 1&ndash;15</div>
+      </div>
+
+      <div class="cause-note">
+        100% of proceeds benefit Homeward Bound &mdash; Addison County's Humane Society. Your donation funds shelter, food, medical care, and rehoming for animals in need.
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">May 31</div>
+          <div class="timeline-label">Nominations Close</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Jun 1&ndash;15</div>
+          <div class="timeline-label">Voting Open</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Jun 18</div>
+          <div class="timeline-label">Swearing In</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-title">LULU FOR MAYOR</div>
+  <div class="footer-tag">&mdash; Licks for All &mdash;</div>
+  <div>&copy; 2026 &middot; The Committee to Elect Lulu &middot; Middlebury, Vermont</div>
+  <div class="disclaimer">
+    Paid for by the Committee to Elect Lulu, Esq. The Committee accepts treats, belly rubs, and tax-deductible donations to Homeward Bound. The candidate is a registered Shih Tzu of voting age in dog years. No squirrels were harmed in the making of this campaign.
+  </div>
+</footer>
+
+</body>
+</html>

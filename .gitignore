@@ -1,0 +1,5 @@
+# Skipping custom domain config for now — add CNAME later when ready
+CNAME
+
+# Original standalone artifact, not part of the deployed site
+luluformayor.html

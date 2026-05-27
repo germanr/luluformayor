@@ -458,21 +458,28 @@ section {
 
 .vote-section .section-eyebrow { color: var(--gold); }
 .vote-section h2 {
-  font-family: 'Alfa Slab One', serif;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
   font-size: clamp(48px, 7vw, 96px);
   line-height: 0.95;
   margin-bottom: 24px;
   letter-spacing: -0.01em;
   color: var(--cream);
 }
-.vote-section h2 em {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-weight: 400;
-  color: var(--gold);
-}
 
 .vote-section p { font-size: 20px; max-width: 600px; margin: 0 auto 40px; }
+
+.vote-link {
+  display: block;
+  margin-top: 14px;
+  font-family: 'Special Elite', monospace;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--navy);
+  text-decoration: underline;
+  word-break: break-all;
+}
+.vote-link:hover { color: var(--burgundy); }
 
 .qr-card {
   background: var(--cream);
@@ -671,13 +678,12 @@ footer .disclaimer {
 
   <!-- ABOUT -->
   <section>
-    <span class="section-eyebrow">Meet the Candidate</span>
-    <h2 class="section-title">An outstanding <em>example.</em></h2>
+    <h2 class="section-title">Meet the <em>Candidate.</em></h2>
     <div class="about">
       <div class="about-text">
         <p>Lulu's story is the American story. Born in Tennessee, adopted in Connecticut, she found her forever home in Middlebury, where she has spent the last year spreading joy down College Street, summiting peaks she has no business summiting, and licking the faces of new friends with relentless enthusiasm.</p>
-        <p>Her name, fittingly, means "an outstanding example of a particular type of person or thing." We thought we would just leave that there.</p>
-        <p>The platform is simple. More walks. Fewer baths. A chicken in every bowl. And a Middlebury where every tail wags, regardless of species, breed, or party affiliation.</p>
+        <p>Her name, fittingly, means "an outstanding example of a particular type of person or thing."</p>
+        <p>Her platform is simple: more walks, fewer baths, chicken in every bowl, and a Middlebury where every tail wags, regardless of species, breed, or party affiliation.</p>
       </div>
       <div class="about-image">
         <img src="./images/lulu-cuddle.jpg" alt="Lulu cuddling with a friend">
@@ -689,7 +695,7 @@ footer .disclaimer {
   <section class="quals" id="qualifications">
     <div class="quals-inner">
       <span class="section-eyebrow">Why Lulu</span>
-      <h2 class="section-title">Qualifications, <em>credentials,</em> and conviction.</h2>
+      <h2 class="section-title">Qualifications, credentials, and conviction.</h2>
       <div class="quals-grid">
         <div class="qual-card" data-num="01">
           <h3>Avid hiker</h3>
@@ -701,7 +707,7 @@ footer .disclaimer {
         </div>
         <div class="qual-card" data-num="03">
           <h3>Chicken Connoisseur</h3>
-          <p>Boneless, skinless, plain boiled. A discerning palate is the mark of a discerning leader.</p>
+          <p>A discerning palate is the mark of a discerning leader.</p>
         </div>
         <div class="qual-card" data-num="04">
           <h3>Master of Diplomacy</h3>
@@ -721,8 +727,7 @@ footer .disclaimer {
 
   <!-- GALLERY -->
   <section class="gallery">
-    <span class="section-eyebrow">On the Campaign Trail</span>
-    <h2 class="section-title">A candidate <em>of</em> the people.</h2>
+    <h2 class="section-title">A candidate of the people.</h2>
     <div class="gallery-grid">
 
       <div class="photo summit1">
@@ -762,14 +767,15 @@ footer .disclaimer {
   <section class="vote-section" id="vote">
     <div class="vote-inner">
       <span class="section-eyebrow">How to Vote</span>
-      <h2>Cast your <em>vote.</em><br>Change a <em>life.</em></h2>
-      <p>Each vote is a $5 donation to Homeward Bound, Addison County's Humane Society. Vote as many times as you'd like. Your generosity feeds, shelters, and finds homes for animals across the county.</p>
+      <h2>Cast your vote.</h2>
+      <p>To vote, donate $5 to Homeward Bound, Addison County's Humane Society. Each $5 donation counts as one vote, and you can donate, and vote, as many times as you'd like. Every dollar helps feed, shelter, and rehome animals across the county.</p>
 
       <div class="qr-card">
         <img class="qr-img" alt="QR code to vote for Lulu"
              src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fwww.homewardboundanimals.org%2Fget-involved%2Ffundraising-events%2F&bgcolor=faf3df&color=1e2a47&margin=0">
-        <div class="qr-label">Scan to Vote</div>
+        <div class="qr-label">Scan or Click to Vote</div>
         <div class="qr-sub">$5 = 1 Vote &middot; June 1&ndash;15</div>
+        <a class="vote-link" href="https://www.homewardboundanimals.org/get-involved/fundraising-events/" target="_blank" rel="noopener">homewardboundanimals.org</a>
       </div>
 
       <div class="cause-note">

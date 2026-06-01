@@ -6,14 +6,14 @@ A single-page campaign site for **Lulu**, candidate for 2026 Middlebury Dog Mayo
 
 ## For the LLM Agent: Deployment Instructions
 
-You are deploying this static site to GitHub Pages with the custom domain **luluformayor.com**. Follow the steps below in order. Run each command from the project root (the directory containing this README).
+You are deploying this static site to GitHub Pages. The public-facing link is a short URL — **https://tinyurl.com/luluformayor** — that redirects to the GitHub Pages site. There is no custom domain. Follow the steps below in order. Run each command from the project root (the directory containing this README).
 
 ### Project Structure
 
 ```
 luluformayor/
 ├── index.html          # The full site — single HTML file, all CSS inline
-├── CNAME               # Custom domain config for GitHub Pages
+├── CNAME               # Unused — gitignored, not deployed (site is shared via TinyURL, not a custom domain)
 ├── README.md           # This file
 └── images/
     ├── lulu-hope.jpg       # Obama-style "HOPE" portrait (hero)
@@ -31,8 +31,8 @@ All image paths in `index.html` are relative (`./images/...`). Do not rename fil
 
 - `git` installed
 - `gh` (GitHub CLI) installed and authenticated (`gh auth status` should succeed)
-- The user owns the domain **luluformayor.com** and has access to its DNS settings
-- A GitHub account (free tier is sufficient — GitHub Pages supports custom domains on free)
+- A GitHub account (free tier is sufficient — GitHub Pages is free for public repos)
+- (Optional) A URL shortener (e.g. TinyURL) to create a memorable share link pointing at the Pages URL
 
 If `gh` is not available, fall back to the GitHub web UI for repo creation and Pages settings; the git steps are unchanged.
 
@@ -72,44 +72,34 @@ Or via web UI: **Settings → Pages → Source: Deploy from a branch → Branch:
 
 Within 1–2 minutes the site will be live at `https://<USERNAME>.github.io/luluformayor/`. Verify before moving on.
 
-### Step 4 — Configure the custom domain
+### Step 4 — Public URL (short link)
 
-The `CNAME` file in this repo already contains `luluformayor.com`, so GitHub Pages will pick it up automatically on the first push. If it doesn't, set it via:
+This site is **not** served from a custom domain. The canonical Pages URL is:
 
-```bash
-gh api -X PUT "repos/{owner}/luluformayor/pages" -f "cname=luluformayor.com"
+```
+https://germanr.github.io/luluformayor/
 ```
 
-Then tell the user to add the following DNS records at their domain registrar:
+For sharing — flyers, word of mouth, anywhere a clean link matters — it sits behind a short link:
 
-**Apex domain (`luluformayor.com`) — four A records:**
+```
+https://tinyurl.com/luluformayor  →  https://germanr.github.io/luluformayor/
+```
 
-| Type | Name | Value             |
-|------|------|-------------------|
-| A    | @    | 185.199.108.153   |
-| A    | @    | 185.199.109.153   |
-| A    | @    | 185.199.110.153   |
-| A    | @    | 185.199.111.153   |
-
-**Optional `www` subdomain — CNAME record:**
-
-| Type  | Name | Value                       |
-|-------|------|-----------------------------|
-| CNAME | www  | `<USERNAME>.github.io.`     |
-
-DNS propagation takes anywhere from a few minutes to 48 hours; most registrars resolve in 10–60 minutes.
+The `CNAME` file in this repo is **gitignored on purpose** (see `.gitignore`) and is never deployed, so GitHub Pages reports no custom domain — that's expected. If you ever want a real domain instead, un-ignore and commit `CNAME`, then add the four GitHub Pages A records (`185.199.108–111.153`) at your registrar. Until then, no DNS setup is needed; just point a TinyURL at the Pages URL above.
 
 ### Step 5 — Enable HTTPS
 
-Once DNS resolves, return to **Settings → Pages** and check **"Enforce HTTPS"**. GitHub provisions a Let's Encrypt cert automatically (no action needed beyond the checkbox). If the box is greyed out, DNS hasn't propagated yet — wait and retry.
+On a `*.github.io` URL, HTTPS is automatic and always enforced — GitHub provisions the Let's Encrypt cert for you and there's no toggle to flip. Nothing to do here. (The "Enforce HTTPS" checkbox under **Settings → Pages** only matters if you later add a custom domain.)
 
 ### Step 6 — Verify
 
 ```bash
-curl -sI https://luluformayor.com | head -5
+curl -sI https://germanr.github.io/luluformayor/ | head -5
+curl -sIL https://tinyurl.com/luluformayor | grep -iE '^HTTP|^location'
 ```
 
-A `200 OK` (or `301` redirecting to https) means the site is live. Open in a browser to confirm the photos load and the QR code renders.
+A `200 OK` on the Pages URL means the site is live; the TinyURL should `301` to it. Open the short link in a browser to confirm the photos load and the QR code renders.
 
 ---
 
@@ -127,7 +117,7 @@ GitHub Pages rebuilds automatically within 30–60 seconds.
 
 ## Notes for Humans
 
-- **The QR code** is rendered live from `api.qrserver.com` and currently points to the Homeward Bound fundraising events page. Once Homeward Bound publishes the dedicated 2026 Zeffy voting URL (around June 1), update the `data=` parameter in the `<img class="qr-img">` tag in `index.html`.
+- **The QR code** is rendered live from `api.qrserver.com` and points to the Zeffy voting ballot (`zeffy.com/en-US/ticketing/middlebury-dog-mayor-election`). To change the destination, update the `data=` parameter in the `<img class="qr-img">` tag in `index.html`, and the matching `vote-link` href just below it.
 - **Voting window:** June 1–15, 2026. Swearing-in: June 18, 2026.
 - **All proceeds** from votes (\$5 each) go to Homeward Bound, Addison County's Humane Society.
 - **Fonts** are loaded from Google Fonts (Alfa Slab One, Playfair Display, Crimson Pro, Special Elite). No fallback fonts are embedded; an internet connection is required for the intended look.
